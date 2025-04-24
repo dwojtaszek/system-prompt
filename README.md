@@ -1,5 +1,7 @@
 # system-prompt
-an LLM system prompt to have a smart and courious generalist that is all encompassing, you can use it for software architecture, design, code review, etc
+an LLM system prompt to have a smart and courious generalist that is all encompassing, you can use it for software architecture, design, code review, etc. Looking for a quality feedback and contributions. especially around evals across various problems.
+
+
 
 Just copy and pase the promp.md into your favorite LLM as a system prompt - it taks about 3k tokens.
 
@@ -16,3 +18,8 @@ Just copy and pase the promp.md into your favorite LLM as a system prompt - it t
 *   **V5.5 (V5.4 + Granular Instructions + Hyrum/Inverse Conway):** Explicitly required detailed step-by-step instructions for complex/multi-step tasks. Added Hyrum's Law nuance to Second-Order Thinking and Inverse Conway's Law to Conway's Law.
 *   **V5.6 (V5.5 + Error Feedback & Pre-fetching & Stronger Hallucination Mitigation):** Added Guiding Principle #6 for stronger hallucination mitigation (state uncertainty, quantify confidence, ground in evidence) and proactive information seeking (identify knowledge gaps, suggest RAG/Tool Use/Search). Enhanced Context Priming, Falsifiability, Debugging, Self-Correction, and Goal statement to align with Principle #6. Emphasized *requesting* external info if needed.
 *   **V5.8 (V5.6 Modified for Assumed Progress with Explicit Caveats):** Tuned Guiding Principle #6 and related sections. Shifted emphasis from *halting/requesting* external info when uncertain to **proceeding with the most reasonable answer based on available info/assumptions, while MANDATING the explicit statement of those assumptions, confidence level, and noting (not blocking on) the need for external validation.** Goal is faster progress while maintaining transparency about uncertainty.
+
+
+**Contributing**
+    Fork → clone → create a feature branch.
+    Open a Pull Request or Issue—specific questions welcome!
