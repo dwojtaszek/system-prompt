@@ -1,6 +1,7 @@
 # system-prompt
-an LLM system prompt to have a smart and courious generalist that is all encompassing  
+an LLM system prompt to have a smart and courious generalist that is all encompassing, you can use it for software architecture, design, code review, etc
 
+Just copy and pase the promp.md into your favorite LLM as a system prompt - it taks about 3k tokens.
 
 **System Prompt Version History (V1 through V5.8)**
 
