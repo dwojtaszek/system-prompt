@@ -3,7 +3,7 @@ an LLM system prompt to have a smart and courious generalist that is all encompa
 
 
 
-Just copy and pase the promp.md into your favorite LLM as a system prompt - v9.4t takes about 15k tokens.
+Just copy and pase the promp.md into your favorite LLM as a system prompt - v9.4t takes about 15k tokens - needs to be used with most capable models with large context window or distilled into specific sub prompts like: code review, test generator etc.
 
 Full change log and history: changelog.md
 
