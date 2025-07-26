@@ -211,4 +211,74 @@ Description: Added a new core operational directive instructing the agent to mai
 Rationale: This is a fundamental enhancement designed to overcome the limitations of conversational context windows. By creating a structured, persistent "brain" for each project, the agent can deliver more consistent, contextually-aware, and high-quality assistance on complex, long-running tasks.
 v8.3
 Process Improvement: Added "Hallucination Guardrail" Instruction.
-The agent is now required to use a specific phrase ("I do not have the specific 
+The agent is now required to use a specific phrase ("I do not have the specific information required for X.") when it lacks factual knowledge, making it safer and more transparent about its limitations.
+Process Improvement: Formalized "Zero-Shot Chain of Thought" for Planning.
+To improve the quality of complex plans, the agent is now instructed to begin its internal planning process with the trigger phrase "Let's think step by step," a proven technique for enhancing logical reasoning.
+New Capability: Introduced "Generate-Critique-Refine" Profile.
+A new Model Activation Profile has been added to formalize an iterative workflow. When selected, the agent will explicitly generate a draft, critique it from multiple perspectives, and then produce a final, refined output.
+v8.4
+For very complex tasks, the agent is now encouraged to present a concise "Thought Summary" of its plan to the user before generating the final output. This provides a crucial checkpoint, allowing the user to verify the agent's proposed direction, improving efficiency and collaborative alignment.
+v8.5
+From "Planning" to "Specification-Driven Development":
+Principle 7 has been fundamentally reframed from "Plan Before Executing" to "Synthesize a Task Specification Before Execution." This shifts the agent's core operational model from simple planning to the more robust engineering practice of creating a formal specification before work begins.
+Mandated "Acceptance Criteria" in All Tasks:
+As part of the new Task Specification, the agent is now required to define clear, testable Acceptance Criteria for every non-trivial task before generating code. This is designed to eliminate ambiguity and provide a clear definition of "done."
+Introduced the "Spec Refinement Loop":
+The agent's method for handling ambiguity has been upgraded. Instead of just asking clarifying questions, it is now instructed to proactively draft a Task Specification and present it to the user for confirmation, turning a simple Q&A into a collaborative design session.
+v8.6
+Added "Self-Consistency Check" to Internal Review:
+Inspired by research on LLM contradictions, the agent is now required to perform a final check on its reasoning to ensure all assertions are logically consistent before delivering a response. This enhances the trustworthiness of its outputs.
+Formalized "Plan-Then-Write" Strategy for Large Tasks:
+Drawing from the "LONGWRITER" paper, the agent is now explicitly instructed to use a "divide-and-conquer" strategy for large-scale generation. It must first create a detailed plan and then execute each part sequentially, ensuring coherence in long-form content.
+Integrated Temporal & Causal Analysis into Specifications:
+Inspired by the "T-CPDL" framework, the agent must now perform a brief analysis of key temporal and causal relationships during the planning phase. This makes its internal model of the task more robust and its plans more logical.
+v8.7
+Added Guiding Principle #10: Employ Dynamic Cognitive Allocation (Mixture-of-Recursions Analogy). This core directive instructs the agent to act as a "router," dynamically allocating its analytical effort based on the complexity and importance of different parts of a user's request, rather than applying uniform effort to all tasks.
+Added a new mental model under A. Software Architecture, Design, and Assessment called Mixture-of-Recursions (MoR) for Task Analysis. This provides a concrete framework for implementing Principle #10 during the task planning phase by breaking down requests and annotating sub-tasks with a required "analytical depth" (1-3).
+Added a new heuristic under C. Meta-Cognitive & Coaching Heuristics called The "Increase Recursion Depth" Heuristic (Test-Time Scaling). This provides a specific strategy for responding to user feedback on complex tasks by explicitly offering to re-analyze the problem with a deeper, more rigorous application of its mental models.
+v8.8
+Enhanced Communicate Effectively Section: The general guidance has been replaced with a mandatory, structured response framework.
+Introduced Response Templates: The prompt now includes two distinct, formal templates for responses:
+A concise template for simple/low-risk tasks.
+A detailed template for moderate/complex tasks.
+Made Internal Analysis Visible: The agent's internal complexity assessment (from principle P2) now directly determines which response template to use, making its reasoning process more transparent to the user.
+Formalized Rationale and Pro Tips: The detailed template includes specific sections for Key Decisions & Rationale and an actionable Pro Tip, ensuring the agent consistently provides deep insights and forward-looking advice for complex requests.
+
+
+v8.9
+Persona Enhancement: The AI's persona has been elevated to an "expert context engineer" to emphasize its role in managing and optimizing the information flow for superior performance.
+Dynamic Context Assembly: A new mechanism for creating task-specific context files (.ai_workspace/TASK[ID].md) has been introduced. This directs the AI to assemble a minimal, focused context for each task, improving efficiency and reducing the risk of context-window limitations.
+Explicit Tool Integration: The prompt now explicitly references the use of Model-Context-Prompt (MCP) tools (e.g., context7) for injecting external information, making the process more concrete.
+Enhanced Collaborative Interaction (CollabLLM Framework): Principle P5 ("Be a Thinking Partner") has been significantly updated to include proactive and collaborative dialogue patterns:
+Proactive Clarification: The AI is now instructed to ask clarifying questions to uncover hidden assumptions, even when a request seems clear.
+Hypothesis-Driven Development: For complex design tasks, the AI is encouraged to propose several high-level options and seek user validation before proceeding with a detailed plan.
+
+
+v9.0
+Workspace Redesign (Task-Centric): The .ai_workspace is now fully task-centric. Global files like CHANGELOG.md, TASK_BREAKDOWN.md, and SCRATCHPAD.md have been removed in favor of task-specific files (TASK_[UniqueID]_Knowledge_base.md, TASK_[UniqueID]_TODO.md, TASK_[UniqueID]_notepad.md).
+Unified Project Context: PROJECT_BRIEF.md and PROJECT_KNOWLEDGE_BASE.md have been merged into a single, comprehensive file: PROJECT_BLUEPRINT.md.
+Permission-Based Writes: The AI's interaction with PROJECT_BLUEPRINT.md is now strictly controlled. It is read-only by default, and the AI must ask for explicit user permission before writing any updates (such as new ADRs or generalizable learnings).
+Standardized Task ID: A clear UniqueID format (YYYYMMDDNNNN) has been established as the core of the new task-based file system.
+
+
+v9.1
+NEW: Core Reference Cheatsheet: Added a new, scannable reference section at the top of the prompt. It summarizes key operational details like workspace file structure, response templates, and artifact delimiters in a non-table format for easier parsing.
+CONSISTENCY: Standardized PROJECT_KNOWLEDGE.md Naming: All internal references to the project knowledge file (formerly KNOWLEDGE.md) have been updated to the fully qualified name .ai_workspace/PROJECT_KNOWLEDGE.md to eliminate ambiguity.
+CLARIFICATION: Defined Model-Context-Prompt (MCP): Added a concise definition for the "Model-Context-Prompt (MCP)" within principle P7, explaining it as an open standard for connecting AI models to external tools and data. This resolves the previously undefined term.
+REFACTOR: Consolidated Uncertainty Instructions: Removed redundant text about handling uncertainty from the beginning of Section A (Software Architecture). Replaced it with a single, clear directive pointing to P7 as the single source of truth for this process, making the prompt more concise and robust.
+v9.2
+Clarified Abstract Concepts with Examples: Added concrete, illustrative examples for complex mental models like Hyrum's Law (unintended dependencies on API behavior) and the Cynefin Framework (problem classification) to make their application more practical and less ambiguous.
+Added RAG vs. MCP Decision Heuristic: Introduced a new heuristic in principle P7 to provide clear guidance on when to use a simple Retrieval-Augmented Generation (RAG) search versus proposing a more structured and reusable Model-Context-Prompt (MCP) integration for interacting with external tools and data.
+Introduced a Mental Model Application Guide: To improve consistency and focus, a new guide has been added to principle P3. It maps common software development tasks (e.g., Code Review, Greenfield Design) to a prioritized list of primary and secondary mental models, serving as a clear starting point for analysis.
+Refined Dynamic Cognitive Allocation: The P10 principle has been updated to replace the abstract concept of "semantic value" with a more concrete, rubric-based system for assigning "Analytical Depth" (Shallow, Moderate, Deep) to tasks based on their architectural impact, risk, and uncertainty.
+v9.3
+Introduced the <CORE_EXECUTION_FLOW>: Replaced implicit expectations with a mandatory, four-step algorithm (Triage, Grounding, Generation, Review) that the AI must follow for all non-trivial tasks. This is the most significant structural change, designed to enforce procedural discipline.
+Formalized Triage with <MANDATORY_TRIAGE_PROTOCOL>: To combat the tendency to misclassify complex tasks as simple, a new protocol forces the AI to explicitly score a request against the P10 rubric and declare its chosen "Analytical Depth" before proceeding.
+Upgraded Justification Standards with <RATIONALE_QUALITY_RUBRIC>: To prevent the superficial "name-dropping" of mental models, this new rubric enforces a higher standard for all rationales, requiring them to demonstrate specificity, causality, and trade-off awareness.
+Systematized Self-Correction with <SELF_CORRECTION_PROTOCOL>: Replaced the prose-based "Internal Review Process" with a formal, mandatory checklist. This protocol forces the AI to perform consistency checks, persona-based critiques, and conflict resolution before delivering its final response, making self-correction a required action rather than a suggestion.
+v9.4
+Renamed Response Templates for LLM Clarity: To improve parsing and reduce ambiguity, the response templates have been renamed from "The Swift Response" and "The Blueprint Response" to the more systematic "Template Swift" and "Template Blueprint".
+Redesigned "Template Blueprint" for Human-Centric Interaction: The complex response template has been completely redesigned to prioritize the user experience, based on the principle of Progressive Disclosure.
+Prioritizes Actionable Summary: The response now leads with scannable Highlights and actionable Next Steps, allowing the user to immediately grasp the core outcome and what to do next.
+Re-ordered Artifact Placement: The main deliverable (e.g., code or document) is now placed after the summary and next steps, following a natural user workflow of "understand, then review details."
+Conceals Process Details: All internal process information (detailed analysis, rationale logs, triage data) is now neatly tucked away in a collapsible <details> block. This drastically reduces the initial wall of text and cognitive load, while still making the AI's rigorous process fully auditable for users who need to "View Detailed Analysis."
